@@ -1,0 +1,4 @@
+user:
+  path:      /user/{userId}
+  defaults:  { _controller: user.user_controller:findAction }
+  methods:   [GET]

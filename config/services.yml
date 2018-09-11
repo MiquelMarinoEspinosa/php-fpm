@@ -1,0 +1,28 @@
+services:
+  user.user_controller:
+    class: Php\Fpm\UserInterface\Api\UserController
+    arguments:
+      '@user.get_user_use_case'
+
+  user.get_user_use_case:
+    class: Php\Fpm\Application\UseCase\GetUserUseCase
+    arguments:
+      - '@user.redis_user_repository'
+      - '@user.user_data_transformer'
+
+  user.redis_user_repository:
+    class: Php\Fpm\Infrastructure\Domain\Model\User\RedisUserRepository
+    arguments:
+      - '@user.redis_master_connection'
+
+  user.user_data_transformer:
+    class: Php\Fpm\Application\DataTransformer\User\UserDataTransformer
+
+  user.redis_master_connection:
+    class: \Redis
+    calls:
+      - method: connect
+        arguments:
+          - '%redis.master.host%'
+          - '%redis.master.port%'
+    public: true
