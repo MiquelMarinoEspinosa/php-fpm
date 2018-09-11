@@ -5,13 +5,10 @@
     "keywords": ["php","cli"],
     "authors": [
         {
-            "name": "Notifications",
-            "email": "tech@trovit.com"
+            "name": "php",
+            "email": "cli@gmail.com"
         }
     ],
-    "require": {
-        "hirak/prestissimo": "^0.3.8"
-    },
     "autoload": {
         "psr-4": {
             "Php\\Cli\\": "src"
@@ -21,6 +18,9 @@
         "psr-4": {
             "Php\\Cli\\Tests\\Unit\\": "tests/unit/"
         }
+    },
+    "require": {
+        "hirak/prestissimo": "^0.3.8"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3"
