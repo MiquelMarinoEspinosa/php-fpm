@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Cli\Domain\Model\User;
+namespace Php\Fpm\Domain\Model\User;
 
 interface UserRepository
 {

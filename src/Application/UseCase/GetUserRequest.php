@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Cli\Application\UseCase;
+namespace Php\Fpm\Application\UseCase;
 
 class GetUserRequest
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Php\Cli\Application\DataTransformer\User;
+namespace Php\Fpm\Application\DataTransformer\User;
 
-use Php\Cli\Domain\Model\User\User;
+use Php\Fpm\Domain\Model\User\User;
 
 class UserDataTransformer
 {

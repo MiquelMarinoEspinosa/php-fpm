@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Cli\Application\DataTransformer\User;
+namespace Php\Fpm\Application\DataTransformer\User;
 
 class UserResource
 {

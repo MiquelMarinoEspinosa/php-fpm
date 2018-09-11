@@ -1,10 +1,10 @@
 <?php
 
-namespace Php\Cli\Application\UseCase;
+namespace Php\Fpm\Application\UseCase;
 
-use Php\Cli\Application\DataTransformer\User\UserDataTransformer;
-use Php\Cli\Application\DataTransformer\User\UserResource;
-use Php\Cli\Domain\Model\User\UserRepository;
+use Php\Fpm\Application\DataTransformer\User\UserDataTransformer;
+use Php\Fpm\Application\DataTransformer\User\UserResource;
+use Php\Fpm\Domain\Model\User\UserRepository;
 
 class GetUserUseCase
 {

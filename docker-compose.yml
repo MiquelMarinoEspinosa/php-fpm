@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-    php-cli:
+    php-fpm:
         build:
-            context: etc/devel/docker
-        image: php/php-cli
-        container_name: php-cli
+            context: etc/devel/docker/php-fpm
+        image: php/php-fpm
+        container_name: php-fpm
         volumes:
             - ".:/app"
         extra_hosts:

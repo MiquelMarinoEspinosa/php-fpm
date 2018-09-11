@@ -1,26 +1,29 @@
 {
-    "name": "php/cli",
+    "name": "php/fpm",
     "license": "free",
-    "description": "PHP Cli",
-    "keywords": ["php","cli"],
+    "description": "PHP Fpm",
+    "keywords": ["php","Fpm"],
     "authors": [
         {
             "name": "php",
-            "email": "cli@gmail.com"
+            "email": "fpm@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Php\\Cli\\": "src"
+            "Php\\Fpm\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Php\\Cli\\Tests\\Unit\\": "tests/unit/"
+            "Php\\Fpm\\Tests\\Unit\\": "tests/unit/"
         }
     },
     "require": {
-        "hirak/prestissimo": "^0.3.8"
+        "hirak/prestissimo": "^0.3.8",
+        "symfony/framework-bundle": "^4.1",
+        "symfony/yaml": "^4.1",
+        "symfony/monolog-bundle": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.3"

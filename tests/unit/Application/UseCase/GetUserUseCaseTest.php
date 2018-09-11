@@ -1,13 +1,13 @@
 <?php
 
-namespace Php\Cli\Tests\Unit\Application\UseCase;
+namespace Php\Fpm\Tests\Unit\Application\UseCase;
 
-use Php\Cli\Application\DataTransformer\User\UserDataTransformer;
-use Php\Cli\Application\DataTransformer\User\UserResource;
-use Php\Cli\Application\UseCase\GetUserRequest;
-use Php\Cli\Application\UseCase\GetUserUseCase;
-use Php\Cli\Domain\Model\User\User;
-use Php\Cli\Domain\Model\User\UserRepository;
+use Php\Fpm\Application\DataTransformer\User\UserDataTransformer;
+use Php\Fpm\Application\DataTransformer\User\UserResource;
+use Php\Fpm\Application\UseCase\GetUserRequest;
+use Php\Fpm\Application\UseCase\GetUserUseCase;
+use Php\Fpm\Domain\Model\User\User;
+use Php\Fpm\Domain\Model\User\UserRepository;
 use PHPUnit\Framework\TestCase;
 
 class GetUserUseCaseTest extends TestCase

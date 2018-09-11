@@ -1,0 +1,6 @@
+imports:
+  - { resource: ../parameters.yml }
+
+parameters:
+  beanstalk.main.host: '172.18.0.3'
+  beanstalk.forensics.host: '172.18.0.8'
