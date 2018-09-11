@@ -1,0 +1,28 @@
+{
+    "name": "php/cli",
+    "license": "free",
+    "description": "PHP Cli",
+    "keywords": ["php","cli"],
+    "authors": [
+        {
+            "name": "Notifications",
+            "email": "tech@trovit.com"
+        }
+    ],
+    "require": {
+        "hirak/prestissimo": "^0.3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Php\\Cli\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Php\\Cli\\Tests\\Unit\\": "tests/unit/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.3"
+    }
+}
