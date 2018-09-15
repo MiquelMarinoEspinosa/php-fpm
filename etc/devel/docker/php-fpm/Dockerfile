@@ -9,3 +9,5 @@ ADD php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d
 RUN mkdir -p /app
 
 WORKDIR /app
+
+EXPOSE 9000

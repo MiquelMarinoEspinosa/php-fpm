@@ -4,10 +4,19 @@ services:
     php-fpm:
         build:
             context: etc/devel/docker/php-fpm
-        image: php/php-fpm
-        container_name: php-fpm
+        image: miquel/php-fpm
+        container_name: miquel.php-fpm
         volumes:
             - ".:/app"
         extra_hosts:
             - "docker.host:${DOCKER_HOST_IP}"
+        tty: true
+
+    nginx:
+        build:
+            context: etc/devel/docker/nginx
+        image: miquel/nginx
+        container_name: miquel.nginx
+        ports:
+            - 443:443
         tty: true
