@@ -20,3 +20,12 @@ services:
         ports:
             - 443:443
         tty: true
+
+    redis:
+        build:
+            context: etc/devel/docker/redis
+        image: miquel/redis
+        container_name: miquel.redis
+        ports:
+            - 6379:6379
+        tty: true
