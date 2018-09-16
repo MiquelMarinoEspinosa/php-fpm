@@ -1,0 +1,4 @@
+parameters:
+  kernel.secret: ThisIsVerySecret!
+  redis.master.host: redis
+  redis.master.port: 6379

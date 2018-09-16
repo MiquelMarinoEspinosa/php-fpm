@@ -1,10 +1,2 @@
 imports:
-  - { resource: parameters.yml }
-  - { resource: ../services.yml }
-
-monolog:
-  handlers:
-    nested:
-      type:  stream
-      path:  "php://stderr"
-      level: notice
+  - { resource: ../config.yml }

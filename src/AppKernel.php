@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Cli;
+namespace Php\Fpm;
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
 use Symfony\Bundle\MonologBundle\MonologBundle;
