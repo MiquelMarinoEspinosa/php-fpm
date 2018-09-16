@@ -1,2 +1,2 @@
-imports:
-  - { resource: ../routes.yml }
+_common:
+    resource: ../routes.yml

@@ -3,14 +3,16 @@
 namespace Php\Fpm;
 
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\MonologBundle\MonologBundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 
 class AppKernel extends Kernel
 {
-    const TEST = 'test';
-    const DEV = 'dev';
+    use MicroKernelTrait;
 
     public function registerBundles()
     {
@@ -27,16 +29,6 @@ class AppKernel extends Kernel
         return __DIR__ . '/..';
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
-    {
-        $environment = $this->getEnvironment();
-        if (self::TEST === $environment) {
-            $environment = getenv('APP_ENV') ?: self::DEV;
-        }
-
-        $loader->load($this->getRootDir().'/config/' . $environment . '/config.yml');
-    }
-
     public function getName()
     {
         return '';
@@ -45,5 +37,17 @@ class AppKernel extends Kernel
     public function getLogDir()
     {
         return $this->rootDir . '/var/logs';
+    }
+
+    protected function configureRoutes(RouteCollectionBuilder $routes)
+    {
+        $confDir = $this->getProjectDir().'/config/' . $this->getEnvironment();
+        $routes->import($confDir . '/routes.yml');
+    }
+
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    {
+        $environment = $this->getEnvironment();
+        $loader->load($this->getRootDir().'/config/' . $environment . '/config.yml');
     }
 }

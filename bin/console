@@ -6,7 +6,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
-use Trovit\Bounces\Parser\AppKernel;
+use Php\Fpm\AppKernel;
 
 set_time_limit(0);
 
