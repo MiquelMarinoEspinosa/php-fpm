@@ -12,6 +12,8 @@ class RedisUserRepository implements UserRepository
     /** @var Redis */
     private $redis;
 
+    const PREFIX = 'user_';
+
     public function __construct(Redis $redis)
     {
         $this->redis = $redis;
@@ -20,7 +22,7 @@ class RedisUserRepository implements UserRepository
     public function find(string $id): User
     {
         $userAsArray = json_decode(
-            $this->redis->get('user_' . $id),
+            $this->redis->get(self::PREFIX . $id),
             true
         );
 
@@ -28,6 +30,15 @@ class RedisUserRepository implements UserRepository
             throw new UserNotFound();
         }
 
-        return new User($userAsArray['id']);
+        return new User(
+            $userAsArray['id'],
+            $userAsArray['name']
+        );
+    }
+
+    public function persist(User $user)
+    {
+        $redisKey = self::PREFIX . $user->getId();
+        $this->redis->set($redisKey, json_encode($user));
     }
 }

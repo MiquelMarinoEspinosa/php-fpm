@@ -4,11 +4,20 @@ services:
       arguments:
         - '@request_stack'
         - '@user.get_user_use_case'
+        - '@user.create_user_use_case'
       public: true
 
     user.get_user_use_case:
-      class: Php\Fpm\Application\UseCase\GetUserUseCase
+      class: Php\Fpm\Application\UseCase\User\GetUserUseCase
       arguments:
+        - '@user.redis_user_repository'
+        - '@user.user_data_transformer'
+      public: true
+
+    user.create_user_use_case:
+      class: Php\Fpm\Application\UseCase\User\CreateUserUseCase
+      arguments:
+        - '@user.uuid_user_id_generator'
         - '@user.redis_user_repository'
         - '@user.user_data_transformer'
       public: true
@@ -30,4 +39,8 @@ services:
           arguments:
             - '%redis.master.host%'
             - '%redis.master.port%'
+      public: true
+
+    user.uuid_user_id_generator:
+      class:  Php\Fpm\Infrastructure\Domain\Model\User\UuidUserIdGenerator
       public: true

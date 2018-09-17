@@ -1,6 +1,6 @@
 <?php
 
-namespace Php\Fpm\Application\UseCase;
+namespace Php\Fpm\Application\UseCase\User;
 
 use Php\Fpm\Application\DataTransformer\User\UserDataTransformer;
 use Php\Fpm\Application\DataTransformer\User\UserResource;

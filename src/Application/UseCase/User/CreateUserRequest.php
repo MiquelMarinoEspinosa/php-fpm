@@ -1,8 +1,8 @@
 <?php
 
-namespace Php\Fpm\Domain\Model\User;
+namespace Php\Fpm\Application\UseCase\User;
 
-class User
+class CreateUserRequest
 {
     /** @var string */
     private $id;

@@ -1,4 +1,9 @@
-user:
+user_get:
     path: /user/{userId}
-    defaults:  { _controller: user.user_controller:findAction }
+    defaults:  { _controller: user.user_controller:getAction }
     methods:   [GET]
+
+user_post:
+    path: /user
+    defaults:  { _controller: user.user_controller:postAction }
+    methods:   [POST]
