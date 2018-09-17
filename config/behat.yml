@@ -1,0 +1,12 @@
+default:
+  formatters:
+    pretty: true
+  autoload:
+    - '%paths.base%/../tests/acceptance/UserInterface/Api/Behat'
+
+  suites:
+    default:
+      paths:
+        - '%paths.base%/../tests/acceptance/UserInterface/Api/Behat'
+      contexts:
+        - Php\Fpm\Tests\Acceptance\UserInterface\Api\Behat\SiteContext

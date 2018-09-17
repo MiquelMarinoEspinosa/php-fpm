@@ -10,6 +10,10 @@ services:
             - ".:/app"
         extra_hosts:
             - "docker.host:${DOCKER_HOST_IP}"
+            - "site.org:172.19.0.3"
+        networks:
+            miquel_net:
+                ipv4_address: 172.19.0.2
         tty: true
 
     nginx:
@@ -19,6 +23,9 @@ services:
         container_name: miquel.nginx
         ports:
             - 443:443
+        networks:
+            miquel_net:
+                ipv4_address: 172.19.0.3
         tty: true
 
     redis:
@@ -28,4 +35,14 @@ services:
         container_name: miquel.redis
         ports:
             - 6379:6379
+        networks:
+            miquel_net:
+                ipv4_address: 172.19.0.4
         tty: true
+
+networks:
+    miquel_net:
+        driver: bridge
+        ipam:
+            config:
+            - subnet: 172.19.0.0/24
