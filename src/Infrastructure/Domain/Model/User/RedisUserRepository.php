@@ -39,6 +39,11 @@ class RedisUserRepository implements UserRepository
     public function persist(User $user)
     {
         $redisKey = self::PREFIX . $user->getId();
-        $this->redis->set($redisKey, json_encode($user));
+        $userAsArray = [
+            'id' => $user->getId(),
+            'name' => $user->getName()
+        ];
+
+        $this->redis->set($redisKey, json_encode($userAsArray));
     }
 }

@@ -9,7 +9,8 @@ class UserDataTransformer
     public function transform(User $user): UserResource
     {
         return new UserResource(
-            $user->getId()
+            $user->getId(),
+            $user->getName()
         );
     }
 }

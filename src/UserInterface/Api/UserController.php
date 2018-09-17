@@ -3,6 +3,7 @@
 namespace Php\Fpm\UserInterface\Api;
 
 use Php\Fpm\Application\UseCase\User\CannotGetUser;
+use Php\Fpm\Application\UseCase\User\CreateUserRequest;
 use Php\Fpm\Application\UseCase\User\CreateUserUseCase;
 use Php\Fpm\Application\UseCase\User\GetUserRequest;
 use Php\Fpm\Application\UseCase\User\GetUserUseCase;
@@ -36,8 +37,14 @@ class UserController
                 $getUserRequest
             );
 
+
             return new JsonResponse(
-                ['id' => $userResource->getId()]
+                 [
+                    'user' => [
+                         'id' => $userResource->getId(),
+                         'name' => $userResource->getName()
+                    ]
+                 ]
             );
         } catch (CannotGetUser $cannotGetUser) {
             return new JsonResponse(
@@ -53,5 +60,19 @@ class UserController
     public function postAction()
     {
         $currentRequest = $this->requestStack->getCurrentRequest();
+        $name = $currentRequest->request->get('name');
+
+        $createUserRequest = new CreateUserRequest($name);
+
+        $userResource = $this->createUserUseCase->execute($createUserRequest);
+
+        return new JsonResponse(
+            [
+                'user' => [
+                    'id' => $userResource->getId(),
+                    'name' => $userResource->getName()
+                ]
+            ]
+        );
     }
 }
