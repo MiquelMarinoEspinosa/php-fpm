@@ -3,6 +3,7 @@
 namespace Php\Fpm\Infrastructure\Domain\Model\User;
 
 use Php\Fpm\Domain\Model\User\User;
+use Php\Fpm\Domain\Model\User\UserNotFound;
 use Php\Fpm\Domain\Model\User\UserRepository;
 use Redis;
 
@@ -22,6 +23,10 @@ class RedisUserRepository implements UserRepository
             $this->redis->get('user_' . $id),
             true
         );
+
+        if (null === $userAsArray) {
+            throw new UserNotFound();
+        }
 
         return new User($userAsArray['id']);
     }

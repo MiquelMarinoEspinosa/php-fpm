@@ -2,20 +2,21 @@
 
 namespace Php\Fpm\UserInterface\Api;
 
+use Php\Fpm\Application\UseCase\CannotGetUser;
 use Php\Fpm\Application\UseCase\GetUserRequest;
 use Php\Fpm\Application\UseCase\GetUserUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class UserController
 {
-    /** @var Request */
+    /** @var RequestStack */
     private $request;
     /** @var GetUserUseCase */
     private $getUserUseCase;
 
     public function __construct(
-        Request $request,
+        RequestStack $request,
         GetUserUseCase $getUserUseCase
     ) {
         $this->request = $request;
@@ -24,13 +25,23 @@ class UserController
 
     public function findAction($userId)
     {
-        $getUserRequest = new GetUserRequest($userId);
-        $userResource = $this->getUserUseCase->execute(
-            $getUserRequest
-        );
+        try {
+            $getUserRequest = new GetUserRequest($userId);
+            $userResource = $this->getUserUseCase->execute(
+                $getUserRequest
+            );
 
-        return new JsonResponse(
-            ['id' => $userResource->getId()]
-        );
+            return new JsonResponse(
+                ['id' => $userResource->getId()]
+            );
+        } catch (CannotGetUser $cannotGetUser) {
+            return new JsonResponse(
+                ['error' => [
+                        'status' => 404,
+                        'title' => 'User not found'
+                    ]
+                ]
+            );
+        }
     }
 }
