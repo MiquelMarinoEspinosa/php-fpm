@@ -50,12 +50,14 @@ class SiteContext implements Context
     public function theUserShouldHaveBeenCreated()
     {
         $ch = curl_init();
+        $url = 'https://site.org/user/' . $this->id;
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL => 'https://site.org/user/' . $this->id,
+            CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false
         ]);
+        echo $url;
         $response = curl_exec($ch);
         $user = json_decode($response, true);
         if ($this->name !== $user['user']['name']) {
