@@ -21,6 +21,8 @@ services:
             context: etc/devel/docker/nginx
         image: miquel/nginx
         container_name: miquel.nginx
+        volumes:
+            - "./assets:/var/www/"
         ports:
             - 443:443
         networks:

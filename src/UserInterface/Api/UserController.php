@@ -29,6 +29,16 @@ class UserController
         $this->createUserUseCase = $createUserUseCase;
     }
 
+    /**
+     * @OA\Info(title="User API", version="0.1")
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/user",
+     *     @OA\Response(response="200", description="User resource")
+     * )
+     */
     public function getAction($userId)
     {
         try {
