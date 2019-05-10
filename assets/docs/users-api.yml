@@ -2,10 +2,22 @@ openapi: 3.0.0
 info:
   title: 'User API'
   version: '0.1'
+servers:
+  -
+    url: 'https://site.org'
 paths:
   /user:
     get:
       operationId: 'Php\Fpm\UserInterface\Api\UserController::getAction'
+      parameters:
+        -
+          name: userID
+          in: path
+          description: 'Id for the user'
+          schema:
+            type: string
       responses:
         '200':
           description: 'User resource'
+        '404':
+          description: 'User not found'

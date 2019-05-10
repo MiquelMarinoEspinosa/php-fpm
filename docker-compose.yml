@@ -44,7 +44,7 @@ services:
     swagger_ui:
         environment:
             - SWAGGER_JSON=./assets/docs/users-api.yml
-            - API_URL=/users-api.yml
+            - API_URL=https://site.org/docs/users-api.yml
         image:   swaggerapi/swagger-ui
         container_name: miquel.swagger
         volumes:

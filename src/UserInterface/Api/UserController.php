@@ -34,9 +34,22 @@ class UserController
      */
 
     /**
+     * * @OA\Server(url="https://site.org")
+     */
+
+    /**
      * @OA\Get(
      *     path="/user",
-     *     @OA\Response(response="200", description="User resource")
+     *     @OA\Parameter(
+     *        name="userID",
+     *        description="Id for the user",
+     *        in="path",
+     *        @OA\Schema(
+     *              type="string"
+     *        )
+     *     ),
+     *     @OA\Response(response="200", description="User resource"),
+     *     @OA\Response(response="404", description="User not found"),
      * )
      */
     public function getAction($userId)
