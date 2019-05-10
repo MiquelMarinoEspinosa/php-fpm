@@ -41,7 +41,16 @@ services:
             miquel_net:
                 ipv4_address: 172.19.0.4
         tty: true
-
+    swagger_ui:
+        environment:
+            - SWAGGER_JSON=./assets/docs/users-api.yml
+            - API_URL=/users-api.yml
+        image:   swaggerapi/swagger-ui
+        container_name: miquel.swagger
+        volumes:
+            - "./assets/docs/users-api.yml:/usr/share/nginx/html/users-api.yml"
+        ports:
+            - 9000:8080
 networks:
     miquel_net:
         driver: bridge
