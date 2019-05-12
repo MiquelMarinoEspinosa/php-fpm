@@ -8,6 +8,8 @@ servers:
 paths:
   '/user/{id}':
     get:
+      tags:
+        - User
       operationId: 'Php\Fpm\UserInterface\Api\UserController::getAction'
       parameters:
         -
@@ -18,13 +20,44 @@ paths:
             type: string
       responses:
         '200':
-          description: 'User resource'
+          description: 'User found'
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserResource'
         '404':
           description: 'User not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  status: { description: 'The response status', type: integer, format: int64 }
+                  title: { description: 'The response not detailed message', type: string }
+                type: object
+  /user:
+    post:
+      tags:
+        - User
+      operationId: 'Php\Fpm\UserInterface\Api\UserController::postAction'
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                name:
+                  description: 'User name'
+                  type: string
+              type: object
+      responses:
+        '200':
+          description: 'User created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResource'
+        default:
+          description: 'An error occured'
           content:
             application/json:
               schema:
@@ -41,5 +74,8 @@ components:
           type: string
         name:
           description: 'The user name'
+          type: string
+        self:
+          description: 'The self url resource'
           type: string
       type: object
