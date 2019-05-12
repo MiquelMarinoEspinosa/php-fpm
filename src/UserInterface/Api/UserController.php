@@ -104,7 +104,10 @@ class UserController
                         'title' => 'User not found'
                     ]
                 ],
-                Response::HTTP_NOT_FOUND
+                Response::HTTP_NOT_FOUND,
+                [
+                    'Access-Control-Allow-Origin' => '*'
+                ]
             );
         }
     }
