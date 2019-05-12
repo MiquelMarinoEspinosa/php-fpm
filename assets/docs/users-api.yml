@@ -6,12 +6,12 @@ servers:
   -
     url: 'https://site.org'
 paths:
-  /user:
+  '/user/{id}':
     get:
       operationId: 'Php\Fpm\UserInterface\Api\UserController::getAction'
       parameters:
         -
-          name: userID
+          name: id
           in: path
           description: 'Id for the user'
           schema:
@@ -19,5 +19,27 @@ paths:
       responses:
         '200':
           description: 'User resource'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResource'
         '404':
           description: 'User not found'
+          content:
+            application/json:
+              schema:
+                properties:
+                  status: { description: 'The response status', type: integer, format: int64 }
+                  title: { description: 'The response not detailed message', type: string }
+                type: object
+components:
+  schemas:
+    UserResource:
+      properties:
+        id:
+          description: 'The user id'
+          type: string
+        name:
+          description: 'The user name'
+          type: string
+      type: object

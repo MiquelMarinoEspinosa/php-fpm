@@ -50,7 +50,7 @@ services:
         volumes:
             - "./assets/docs/users-api.yml:/usr/share/nginx/html/users-api.yml"
         ports:
-            - 9000:8080
+            - 8080:8080
 networks:
     miquel_net:
         driver: bridge

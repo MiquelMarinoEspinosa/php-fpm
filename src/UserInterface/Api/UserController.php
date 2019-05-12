@@ -9,6 +9,7 @@ use Php\Fpm\Application\UseCase\User\GetUserRequest;
 use Php\Fpm\Application\UseCase\User\GetUserUseCase;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController
 {
@@ -39,17 +40,43 @@ class UserController
 
     /**
      * @OA\Get(
-     *     path="/user",
+     *     path="/user/{id}",
      *     @OA\Parameter(
-     *        name="userID",
+     *        name="id",
      *        description="Id for the user",
      *        in="path",
      *        @OA\Schema(
      *              type="string"
      *        )
      *     ),
-     *     @OA\Response(response="200", description="User resource"),
-     *     @OA\Response(response="404", description="User not found"),
+     *     @OA\Response(
+     *          response="200",
+     *          description="User resource",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(ref="#/components/schemas/UserResource"),
+     *         )
+     *     ),
+     *     @OA\Response(
+     *          response="404",
+     *          description="User not found",
+     *          @OA\MediaType(
+     *              mediaType="application/json",
+     *              @OA\Schema(
+     *                  @OA\Property(
+     *                      property="status",
+     *                      type="integer",
+     *                      format="int64",
+     *                      description="The response status"
+     *                  ),
+     *                  @OA\Property(
+     *                      property="title",
+     *                      type="string",
+     *                      description="The response not detailed message"
+     *                  )
+     *             ),
+     *         )
+     *     ),
      * )
      */
     public function getAction($userId)
@@ -71,11 +98,13 @@ class UserController
             );
         } catch (CannotGetUser $cannotGetUser) {
             return new JsonResponse(
-                ['error' => [
-                        'status' => 404,
+                [
+                    'error' => [
+                        'status' => Response::HTTP_NOT_FOUND,
                         'title' => 'User not found'
                     ]
-                ]
+                ],
+                Response::HTTP_NOT_FOUND
             );
         }
     }
