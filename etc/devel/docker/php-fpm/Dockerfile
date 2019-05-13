@@ -7,6 +7,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 RUN rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 ADD php/conf.d/docker-php-ext-xdebug.ini /usr/local/etc/php/conf.d
 RUN mkdir -p /app
+RUN composer global require hirak/prestissimo
 
 WORKDIR /app
 

@@ -98,7 +98,11 @@ class UserController
                          'name' => $userResource->getName(),
                          'self' => $userResource->getSelf()
                     ]
-                 ]
+                 ],
+                Response::HTTP_OK,
+                [
+                    'Access-Control-Allow-Origin' => '*'
+                ]
             );
         } catch (CannotGetUser $cannotGetUser) {
             return new JsonResponse(
@@ -196,6 +200,10 @@ class UserController
                         'name' => $userResource->getName(),
                         'self' => $userResource->getSelf()
                     ]
+                ],
+                Response::HTTP_OK,
+                [
+                    'Access-Control-Allow-Origin' => '*'
                 ]
             );
         } catch (\Exception $exception) {
