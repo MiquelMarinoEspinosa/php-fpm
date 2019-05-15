@@ -95,8 +95,7 @@ class UserController
                  [
                     'user' => [
                          'id' => $userResource->getId(),
-                         'name' => $userResource->getName(),
-                         'self' => $userResource->getSelf()
+                         'name' => $userResource->getName()
                     ]
                  ],
                 Response::HTTP_OK,
@@ -197,8 +196,7 @@ class UserController
                 [
                     'user' => [
                         'id' => $userResource->getId(),
-                        'name' => $userResource->getName(),
-                        'self' => $userResource->getSelf()
+                        'name' => $userResource->getName()
                     ]
                 ],
                 Response::HTTP_OK,

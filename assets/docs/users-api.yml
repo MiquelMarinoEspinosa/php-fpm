@@ -75,7 +75,4 @@ components:
         name:
           description: 'The user name'
           type: string
-        self:
-          description: 'The self url resource'
-          type: string
       type: object

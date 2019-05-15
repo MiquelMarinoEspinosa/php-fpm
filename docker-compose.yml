@@ -12,7 +12,7 @@ services:
             - "docker.host:${DOCKER_HOST_IP}"
             - "site.org:172.19.0.3"
         networks:
-            miquel_net:
+            miquel_php_fpm_net:
                 ipv4_address: 172.19.0.2
         tty: true
 
@@ -26,7 +26,7 @@ services:
         ports:
             - 443:443
         networks:
-            miquel_net:
+            miquel_php_fpm_net:
                 ipv4_address: 172.19.0.3
         tty: true
 
@@ -38,9 +38,10 @@ services:
         ports:
             - 6379:6379
         networks:
-            miquel_net:
+            miquel_php_fpm_net:
                 ipv4_address: 172.19.0.4
         tty: true
+
     swagger_ui:
         environment:
             - SWAGGER_JSON=./assets/docs/users-api.yml
@@ -51,8 +52,9 @@ services:
             - "./assets/docs/users-api.yml:/usr/share/nginx/html/users-api.yml"
         ports:
             - 8080:8080
+
 networks:
-    miquel_net:
+    miquel_php_fpm_net:
         driver: bridge
         ipam:
             config:
