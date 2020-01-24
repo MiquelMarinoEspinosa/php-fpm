@@ -1,3 +1,5 @@
+PHP fpm basic configuration with a very simple DDD architecture sample
+
 - Create file .env with your ip address based on .env.dist
 - docker-compose up
 - Edit /etc/hosts adding site.org to the localhost entry like this
