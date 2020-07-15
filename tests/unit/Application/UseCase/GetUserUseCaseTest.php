@@ -9,9 +9,12 @@ use Php\Fpm\Application\UseCase\User\GetUserUseCase;
 use Php\Fpm\Domain\Model\User\User;
 use Php\Fpm\Domain\Model\User\UserRepository;
 use PHPUnit\Framework\TestCase;
+use Prophecy\PhpUnit\ProphecyTrait;
 
 class GetUserUseCaseTest extends TestCase
 {
+    use ProphecyTrait;
+
     public function testUserFound()
     {
         $id ='rewsd-ewqer-dsdas-qewqe';
