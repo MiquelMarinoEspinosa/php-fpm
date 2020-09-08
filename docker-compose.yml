@@ -1,61 +1,62 @@
-version: '3'
+version: "3"
 
 services:
-    php-fpm:
-        build:
-            context: etc/devel/docker/php-fpm
-        image: miquel/php-fpm
-        container_name: miquel.php-fpm
-        volumes:
-            - ".:/app"
-        extra_hosts:
-            - "docker.host:${DOCKER_HOST_IP}"
-            - "site.org:172.19.0.3"
-        networks:
-            miquel_php_fpm_net:
-                ipv4_address: 172.19.0.2
-        tty: true
+  php-fpm:
+    build:
+      context: etc/devel/docker/php-fpm
+    image: miquel/php-fpm
+    container_name: miquel.php-fpm
+    volumes:
+      - ".:/app"
+    extra_hosts:
+      - "docker.host:${DOCKER_HOST_IP}"
+      - "site.org:172.19.0.3"
+    networks:
+      miquel_php_fpm_net:
+        ipv4_address: 172.19.0.2
+    tty: true
 
-    nginx:
-        build:
-            context: etc/devel/docker/nginx
-        image: miquel/nginx
-        container_name: miquel.nginx
-        volumes:
-            - "./assets:/var/www/"
-        ports:
-            - 443:443
-        networks:
-            miquel_php_fpm_net:
-                ipv4_address: 172.19.0.3
-        tty: true
+  nginx:
+    build:
+      context: etc/devel/docker/nginx
+    image: miquel/nginx
+    container_name: miquel.nginx
+    volumes:
+      - "./assets:/var/www/"
+    ports:
+      - 443:443
+    networks:
+      miquel_php_fpm_net:
+        ipv4_address: 172.19.0.3
+    tty: true
 
-    redis:
-        build:
-            context: etc/devel/docker/redis
-        image: miquel/redis
-        container_name: miquel.redis
-        ports:
-            - 6379:6379
-        networks:
-            miquel_php_fpm_net:
-                ipv4_address: 172.19.0.4
-        tty: true
+  redis:
+    build:
+      context: etc/devel/docker/redis
+    image: miquel/redis
+    container_name: miquel.redis
+    ports:
+      - 6379:6379
+    networks:
+      miquel_php_fpm_net:
+        ipv4_address: 172.19.0.4
+    tty: true
 
-    swagger_ui:
-        environment:
-            - SWAGGER_JSON=./assets/docs/users-api.yml
-            - API_URL=https://site.org/docs/users-api.yml
-        image:   swaggerapi/swagger-ui
-        container_name: miquel.swagger
-        volumes:
-            - "./assets/docs/users-api.yml:/usr/share/nginx/html/users-api.yml"
-        ports:
-            - 8080:8080
+  swagger_ui:
+    environment:
+      - SWAGGER_JSON=./assets/docs/users-api.yml
+      - API_URL=https://site.org/docs/users-api.yml
+    image: swaggerapi/swagger-ui
+    container_name: miquel.swagger
+    volumes:
+      - "./assets/docs/users-api.yml:/usr/share/nginx/html/users-api.yml"
+    ports:
+      - 8080:8080
+    tty: true
 
 networks:
-    miquel_php_fpm_net:
-        driver: bridge
-        ipam:
-            config:
-            - subnet: 172.19.0.0/24
+  miquel_php_fpm_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/24
