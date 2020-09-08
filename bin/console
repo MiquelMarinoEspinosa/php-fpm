@@ -5,7 +5,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Debug\Debug;
 use Php\Fpm\AppKernel;
 
 set_time_limit(0);
@@ -14,9 +13,6 @@ $input = new ArgvInput();
 $env = $input->getParameterOption(['--env', '-e'], getenv('APP_ENV') ?: 'dev');
 $debug = getenv('APP_DEBUG') !== '0' && !$input->hasParameterOption(['--no-debug', '']) && $env !== 'prod';
 
-if ($debug) {
-    Debug::enable();
-}
 $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->run($input);
